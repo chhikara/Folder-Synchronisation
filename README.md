@@ -55,3 +55,5 @@ Copy the file to both the operating folders.
 2. Run socialCopsUpload.py file in the folder which you want to synchronize your drones to. When the google GUI appears, click Accept
 
 3. Run socialCopsDownload.py file in the drone folder.
+
+Further Help with the code - Contact : (+91) 9818061051
