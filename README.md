@@ -63,3 +63,12 @@ Sifo-Dyas
               / _ \ #  |
              |  #  |#  |   B-SD3 Security Droid
           LS |  #  |#  |      - Front View -
+          
+Steps:
+1. Install dependencies
+$ pip install --upgrade google-api-python-client
+$ pip install watchdog
+
+2. Run python file in the folder which you want to synchronize your drones to.
+
+3. Run python file in the drone folder.
