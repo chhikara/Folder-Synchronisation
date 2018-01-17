@@ -67,6 +67,7 @@ Sifo-Dyas
 Steps:
 1. Install dependencies
 $ pip install --upgrade google-api-python-client
+
 $ pip install watchdog
 
 2. Run python file in the folder which you want to synchronize your drones to.
