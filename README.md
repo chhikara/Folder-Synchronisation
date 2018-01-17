@@ -49,6 +49,9 @@ $ pip install --upgrade google-api-python-client
 
 $ pip install watchdog
 
-2. Run socialCopsUpload.py file in the folder which you want to synchronize your drones to.
+**Obtain Google API credentials. Download the client_secret file and rename it to client_secret.json . 
+Copy the file to both the operating folders.
+
+2. Run socialCopsUpload.py file in the folder which you want to synchronize your drones to. When the google GUI appears, click Accept
 
 3. Run socialCopsDownload.py file in the drone folder.
