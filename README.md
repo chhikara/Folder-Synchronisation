@@ -39,33 +39,12 @@ Please share your method and implementation in great detail with us so that it c
 May the force be with you.
 
 Sifo-Dyas
-                                 +---------------------+
-                                 | Whats going on here?|
-                                 +------------------+--+
-                                                    |
-                                                    |
-  _                                                 |
-  \\                                                |
-   \\_          _.-._                               |
-    X:\        (_/ \_)     <------------------------+
-    \::\       ( ==  )
-     \::\       \== /
-    /X:::\   .-./`-'\.--.
-    \\/\::\ / /     (    l
-     ~\ \::\ /      `.   L.
-       \/:::|         `.'  `
-       /:/\:|          (    `.
-       \/`-'`.          >    )
-              \       //  .-'
-               |     /(  .'
-               `-..-'_ \  \
-               __||/_ \ `-'
-              / _ \ #  |
-             |  #  |#  |   B-SD3 Security Droid
-          LS |  #  |#  |      - Front View -
-          
+
+
 Steps:
+
 1. Install dependencies
+
 $ pip install --upgrade google-api-python-client
 
 $ pip install watchdog
