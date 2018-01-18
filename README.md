@@ -49,11 +49,12 @@ $ pip install --upgrade google-api-python-client
 
 $ pip install watchdog
 
-**Obtain Google API credentials. Download the client_secret file and rename it to client_secret.json . 
-Copy the file to both the operating folders.
+$ pip install mimetypes
 
-2. Run socialCopsUpload.py file in the folder which you want to synchronize your drones to. When the google GUI appears, click Accept
+**Obtain Google API credentials. Download the client_secret file and rename it to client_secret.json . Copy the file to both the operating folders and overwrite the existing client_secret. 
 
-3. Run socialCopsDownload.py file in the drone folder.
+2. Run Upload.py file in the parent folder which you want to synchronize to your other subsidary folders. When the google GUI appears, click Accept
+
+3. Run Download.py file in the other subsidary folders to synchronise them with the parent folder.
 
 Further Help with the code - Contact : (+91) 9818061051
