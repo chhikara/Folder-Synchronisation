@@ -69,4 +69,6 @@ Or
 
 Setting up a cron job in linux.
 
+*** Screenshot of scripts in action is uploaded in the files ***
+
 Contact : (+91) 9818061051
