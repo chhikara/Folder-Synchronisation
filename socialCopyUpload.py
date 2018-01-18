@@ -52,8 +52,8 @@ def checkFolder():
         page_token = response.get('nextPageToken', None)
         if page_token is None:
             break
-
     if flag:
+        print("Folder Not found\nCreating Folder")
         createFolder()
 
 def createFolder():
@@ -85,16 +85,15 @@ def logRegister(DRIVE):
     fileTemp=open("logs.txt",'w+')
     fileTemp.write(str(time.time()))
     fileTemp.close()
-    MIMETYPE='application/vnd.google-apps.spreadsheet'
+    MIMETYPE='application/vnd.google-apps.document'
     file_metadata={'name':'logs','mimeType': MIMETYPE}
     media = MediaFileUpload('logs.txt',
-        mimetype='text/plain',resumable=False)
+        mimetype='text/plain',resumable=True)
     file = DRIVE.files().create(body=file_metadata,media_body=media,
         fields='id').execute()
-    print("logs")
-logRegister(DRIVE)
+    print("logs Registered")
 
-srcPath='C:\\Users\\ionic\\Desktop\\socialCopsFolderSync\\'
+#srcPath='C:\\Users\\ionic\\Desktop\\socialCopsFolderSync\\'
 
 class eventHandler(RegexMatchingEventHandler):
 
@@ -116,6 +115,7 @@ class eventHandler(RegexMatchingEventHandler):
         delete_file(DRIVE,folder.get("id"))
         createFolder()
         allFiles=listLocalFiles()
+        print("--Uploading modified files--")
         for item in allFiles:
             temp=(item.split("."))
             name=temp[0]
@@ -128,10 +128,9 @@ class eventHandler(RegexMatchingEventHandler):
                 mimetype=mimeType,resumable=False)
             file = DRIVE.files().create(body=file_metadata,media_body=media,
                 fields='id').execute()
-            print("File %s Uploaded" %str(item))
+        logRegister(DRIVE)
 
         print("Sync process complete.\n\n***Script is still running!***\n")
-        
 
 
 if __name__ == "__main__":
