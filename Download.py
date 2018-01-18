@@ -39,7 +39,7 @@ def syncFolder(DRIVE):
     response = DRIVE.files().list(q="mimeType='application/vnd.google-apps.folder'"and"name='socialCopsFolderSync'",
         spaces='drive').execute()
     for file in response.get('files', []):
-        print ('Found folder: %s (%s)' % (file.get('name'), file.get('id')))
+        print ('Folder at : %s (%s)' % (file.get('name'), file.get('id')))
         folder=file
         break
 
@@ -53,13 +53,16 @@ def syncFolder(DRIVE):
             pass
         else:
             request = DRIVE.files().get_media(fileId=file.get('id'))
-            fh = io.BytesIO()
+            fh = io.FileIO(file.get('name'),mode='wb')
             downloader = MediaIoBaseDownload(fh, request)
             done = False
             while done is False:
                 status, done = downloader.next_chunk()
-    print ("Download %d%%." % int(status.progress() * 100))
-    print("Done!!!>")
+    try:
+        print ("Download %d%%." % int(status.progress() * 100))
+        print("Done!!!>")
+    except:
+        pass
 
 try:
     localLogs=open('logs.txt','r')
@@ -70,25 +73,27 @@ except:
     lastModifiedLocalTime=0.0
 
 
-page_token = None
-response = DRIVE.files().list(q="mimeType='application/vnd.google-apps.document'"and"name='logs'",
-                                              spaces='drive').execute()
-for file in response.get('files', []):
-    logs=file
-    break
-
 print("\n***Automatic Updates are active***")
 print("***press 'Ctrl' + 'C' to stop***\n""")
 while True:
+    page_token = None
+    response = DRIVE.files().list(q="mimeType='application/vnd.google-apps.document'"and"name='logs'",
+                                              spaces='drive').execute()
+    for file in response.get('files', []):
+        logs=file
+        break
     file_id = logs.get('id')
     MIMETYPE='text/plain'
-    #request ,data= DRIVE.files().get_media(fileId=file_id).execute()
-    data = DRIVE.files().export(fileId=file_id, mimeType=MIMETYPE).execute()
-    if data:
-        fn = 'logs.txt'
-        with open(fn, 'wb') as fh:
-            fh.write(data)
-        fh.close()
+
+    try:
+        data = DRIVE.files().export(fileId=file_id, mimeType=MIMETYPE).execute()
+        if data:
+            fn = 'logs.txt'
+            with open(fn, 'wb') as fh:
+                fh.write(data)
+            fh.close()
+    except:
+        pass
 
     serverLogs=open('logs.txt','r+')
     lastModifiedServerTime=serverLogs.readline()
