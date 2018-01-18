@@ -1,6 +1,7 @@
 # Folder-Synchronisation
 ***Using Google API 
-***Screenshot of scripts in action is uploaded in the files
+
+---------Screenshot of scripts in action is uploaded in the files----------
 
 
 #Clone Wars 2.0
