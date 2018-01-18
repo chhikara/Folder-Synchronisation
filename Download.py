@@ -58,13 +58,16 @@ def syncFolder(DRIVE):
             done = False
             while done is False:
                 status, done = downloader.next_chunk()
-        print ("Download %d%%." % int(status.progress() * 100))
+    print ("Download %d%%." % int(status.progress() * 100))
     print("Done!!!>")
 
-localLogs=open('logs.txt','r')
-lastModifiedLocalTime=localLogs.readline()
-lastModifiedLocalTime=float(str2float(lastModifiedLocalTime))
-localLogs.close()
+try:
+    localLogs=open('logs.txt','r')
+    lastModifiedLocalTime=localLogs.readline()
+    lastModifiedLocalTime=float(str2float(lastModifiedLocalTime))
+    localLogs.close()
+except:
+    lastModifiedLocalTime=0.0
 
 
 page_token = None
@@ -73,6 +76,9 @@ response = DRIVE.files().list(q="mimeType='application/vnd.google-apps.document'
 for file in response.get('files', []):
     logs=file
     break
+
+print("\n***Automatic Updates are active***")
+print("***press 'Ctrl' + 'C' to stop***\n""")
 while True:
     file_id = logs.get('id')
     MIMETYPE='text/plain'
@@ -88,6 +94,7 @@ while True:
     lastModifiedServerTime=serverLogs.readline()
     serverLogs.close()
     lastModifiedServerTime=float(str2float(lastModifiedServerTime))
+
     if(lastModifiedServerTime>lastModifiedLocalTime):
         print("Update found.")
         syncFolder(DRIVE)

@@ -68,11 +68,12 @@ def createFolder():
 checkFolder()
 
 def listLocalFiles():
-    exceptions=["client_secret.json","storage.json"]
+    exceptions=["client_secret.json","storage.json","LICENSE"]
     allFiles=os.listdir(".")
-    for file in allFiles:
-        if file in exceptions:
-            allFiles.remove(file)
+    for item in allFiles:
+        if item in exceptions:
+            allFiles.remove(item)
+
     return allFiles
 
 def delete_file(service, file_id):#Deletes folder
@@ -94,6 +95,7 @@ def logRegister(DRIVE):
     print("logs Registered")
 
 #srcPath='C:\\Users\\ionic\\Desktop\\socialCopsFolderSync\\'
+
 
 class eventHandler(RegexMatchingEventHandler):
 
@@ -120,9 +122,12 @@ class eventHandler(RegexMatchingEventHandler):
             temp=(item.split("."))
             name=temp[0]
             if len(temp)>1:
-                mimeType=mimetypes.types_map['.'+str(temp[-1])]
+                try:
+                    mimeType=mimetypes.types_map['.'+str(temp[-1])]
+                except:
+                    mimeType='None/None'
             else:
-                mimeType='None'
+                mimeType='None/None'
             file_metadata={'name':name,'parents':[folder.get('id')]}
             media = MediaFileUpload(str(item),
                 mimetype=mimeType,resumable=False)
@@ -130,7 +135,8 @@ class eventHandler(RegexMatchingEventHandler):
                 fields='id').execute()
         logRegister(DRIVE)
 
-        print("Sync process complete.\n\n***Script is still running!***\n")
+        print("Sync process complete.\n\n ***Automatic Updates is On!***\n")
+        print("***press 'Ctrl' + 'C' to stop***\n""")
 
 
 if __name__ == "__main__":
