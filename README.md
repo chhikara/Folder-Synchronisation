@@ -53,8 +53,20 @@ $ pip install mimetypes
 
 **Obtain Google API credentials. Download the client_secret file and rename it to client_secret.json . Copy the file to both the operating folders and overwrite the existing client_secret. 
 
-2. Run Upload.py file in the parent folder which you want to synchronize to your other subsidary folders. When the google GUI appears, click Accept
+2. Run Upload.py file in the parent folder which you want to synchronize to your other subsidary folders. When the google GUI appears, click Accept .
 
 3. Run Download.py file in the other subsidary folders to synchronise them with the parent folder.
 
-Further Help with the code - Contact : (+91) 9818061051
+Above step could be done in multiple ways:
+
+Running the file endlessly in cmd.
+
+Or
+
+Using scheduler in windows.
+
+Or
+
+Setting up a cron job in linux.
+
+Contact : (+91) 9818061051
